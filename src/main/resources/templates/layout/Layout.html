@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div th:replace="layout/Header :: header"></div>
+    <div class="flex flex-1">
+        <aside class="w-64 bg-gray-100 p-4">
+            <nav class="space-y-2">
+                <div>
+                    <h3 class="font-semibold text-gray-700">Memo</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/memo/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/memo/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700">Plant 기준정보</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/plant/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/plant/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700">Inventory 기준정보</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/inventory/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/inventory/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700">Inspection</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/inspection/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/inspection/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700">Workorder</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/workorder/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/workorder/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-700">공통코드 관리</h3>
+                    <ul class="ml-4 text-sm text-gray-600">
+                        <li><a href="/code/form" class="hover:underline">입력(form)</a></li>
+                        <li><a href="/code/list" class="hover:underline">목록(list)</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="flex-1 p-6" id="content">
+            <!-- 본문 컨텐츠 -->
+            <div class="text-gray-700">내용 영역</div>
+        </main>
+    </div>
+    <div th:replace="layout/Footer :: footer"></div>
+</body>
+</html>
