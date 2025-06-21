@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설비 상세 정보</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 섹션 구분을 위한 스타일 */
+        .section-header-h5 {
+            /* h5에 맞게 text-base, font-bold, text-gray-800 적용 */
+            @apply text-base font-bold text-gray-800 mb-4; /* 하단 선 제거 */
+        }
+        .info-section {
+            /* 각 정보 섹션에 테두리 및 배경색 변경 */
+            @apply bg-white p-4 rounded-md shadow-sm mb-6 border border-black;
+        }
+        .info-item {
+            @apply mb-2; /* 각 필드 아이템 간의 간격 */
+        }
+        .info-label {
+            @apply font-medium text-gray-800; /* 라벨 텍스트 스타일 */
+        }
+        .info-value {
+            @apply text-gray-700; /* 값 텍스트 스타일 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">설비 상세 정보</h2> <!-- h1에서 h2로 변경 -->
+
+        <!-- 기본 정보 섹션 -->
+        <div class="info-section border border-black p-4 rounded-md bg-white mb-6">
+            <h5 class="section-header-h5">기본 정보</h5> <!-- h3에서 h5로 변경 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                <div class="info-item"><span class="info-label">설비 ID:</span> <span class="info-value">PLT2406210001</span></div>
+                <div class="info-item"><span class="info-label">설비명:</span> <span class="info-value">메인 펌프 #1</span></div>
+                <div class="info-item"><span class="info-label">설비 타입:</span> <span class="info-value">펌프</span></div>
+                <div class="info-item"><span class="info-label">사업장 ID:</span> <span class="info-value">SITEA (사업장 A)</span></div>
+                <div class="info-item"><span class="info-label">기능 그룹 코드:</span> <span class="info-value">MECH (기계)</span></div>
+                <div class="info-item"><span class="info-label">담당 부서:</span> <span class="info-value">DEPTA (생산 1부)</span></div>
+                <div class="info-item"><span class="info-label">자산 유형:</span> <span class="info-value">CAPEX (자본적 지출)</span></div>
+                <div class="info-item"><span class="info-label">설치 일자:</span> <span class="info-value">2023-01-15</span></div>
+            </div>
+        </div>
+
+        <!-- 제조 및 자산 정보 섹션 -->
+        <div class="info-section border border-black p-4 rounded-md bg-white mb-6">
+            <h5 class="section-header-h5">제조 및 자산 정보</h5> <!-- h3에서 h5로 변경 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                <div class="info-item"><span class="info-label">제조사:</span> <span class="info-value">XYZ Tech</span></div>
+                <div class="info-item"><span class="info-label">모델명:</span> <span class="info-value">Model A100</span></div>
+                <div class="info-item"><span class="info-label">시리얼 번호:</span> <span class="info-value">SN-12345</span></div>
+                <div class="info-item"><span class="info-label">규격:</span> <span class="info-value">220V, 50Hz, 10HP</span></div>
+                <div class="info-item"><span class="info-label">취득 가액:</span> <span class="info-value">15,000,000 KRW</span></div>
+                <div class="info-item"><span class="info-label">감가상각 방법:</span> <span class="info-value">정액법</span></div>
+                <div class="info-item"><span class="info-label">잔존 가액:</span> <span class="info-value">1,500,000 KRW</span></div>
+            </div>
+        </div>
+
+        <!-- 운영 및 기타 정보 섹션 -->
+        <div class="info-section border border-black p-4 rounded-md bg-white mb-6">
+            <h5 class="section-header-h5">운영 및 기타 정보</h5> <!-- h3에서 h5로 변경 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                <div class="info-item"><span class="info-label">설치 위치:</span> <span class="info-value">생산1라인</span></div>
+                <div class="info-item"><span class="info-label">가동 상태:</span> <span class="info-value">가동</span></div>
+                <div class="info-item"><span class="info-label">점검 필요 여부:</span> <span class="info-value">Y</span></div>
+                <div class="info-item"><span class="info-label">PSM 대상 여부:</span> <span class="info-value">N</span></div>
+                <div class="info-item"><span class="info-label">Tag 부착 여부:</span> <span class="info-value">Y</span></div>
+                <div class="info-item"><span class="info-label">최근 보전 일시:</span> <span class="info-value">2024-05-20 10:30</span></div>
+                <div class="info-item"><span class="info-label">다음 보전 예정 일시:</span> <span class="info-value">2024-08-20 10:30</span></div>
+                <div class="info-item"><span class="info-label">비고:</span> <span class="info-value">주기적인 윤활이 필요한 설비.</span></div>
+            </div>
+        </div>
+            
+        <!-- 첨부 파일 섹션 -->
+        <div class="info-section border border-black p-4 rounded-md bg-white mb-6">
+            <h5 class="section-header-h5">첨부 파일</h5> <!-- h3에서 h5로 변경 -->
+            <ul class="list-disc list-inside text-sm text-gray-700">
+                <li><a href="#" class="text-blue-600 hover:underline">설비도면_V1.0.pdf</a></li>
+                <li><a href="#" class="text-blue-600 hover:underline">설비매뉴얼.docx</a></li>
+            </ul>
+            <p class="text-sm text-gray-500 mt-2">파일 그룹 ID: <span id="fileGroupId">PLT2406210001</span></p>
+        </div>
+
+        <!-- 관련 정보 섹션 -->
+        <div class="info-section border border-black p-4 rounded-md bg-white mb-6">
+            <h5 class="section-header-h5">관련 정보</h5> <!-- h3에서 h5로 변경 -->
+            <ul class="list-disc list-inside text-sm text-gray-700">
+                <li><a href="../inspection/InspectionList.html?plantId=PLT2406210001" class="text-blue-600 hover:underline">점검 이력 보기</a></li>
+                <li><a href="../workorder/WorkOrderList.html?plantId=PLT2406210001" class="text-blue-600 hover:underline">작업 오더 이력 보기</a></li>
+                <li><a href="../memo/MemoList.html?targetType=PLANT&targetId=PLT2406210001" class="text-blue-600 hover:underline">관련 메모 보기</a></li>
+            </ul>
+        </div>
+
+        <!-- 하단 버튼 -->
+        <div class="mt-6 flex justify-end space-x-3">
+            <a href="PlantList.html" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+                목록으로
+            </a>
+            <a href="PlantForm.html?plantId=PLT2406210001" class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                수정
+            </a>
+            <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                삭제
+            </button>
+        </div>
+    </div>
+</body>
+</html>

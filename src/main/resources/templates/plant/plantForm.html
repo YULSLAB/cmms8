@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설비 등록/수정</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 섹션 구분을 위한 스타일 */
+        .section-header {
+            @apply text-lg font-semibold text-gray-700 mb-4 pb-2 border-b border-gray-200; /* h5에 맞게 조정 */
+        }
+        .form-section {
+            @apply mb-8; /* 각 섹션 간의 여백 */
+        }
+        /* 로딩 스피너 */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 2s linear infinite;
+            margin-right: 8px;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">설비 정보 등록/수정</h2>
+
+        <form action="#" method="POST">
+            <!-- 설비 ID 및 설비명 섹션 -->
+            <div class="form-section">
+                <!-- 이전의 form-grid-12-col 대신 직접 grid grid-cols-12 gap-6 적용 -->
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-4">
+                        <label for="plantId" class="block text-sm font-medium text-gray-700">설비 ID (자동 생성)</label>
+                        <input type="text" id="plantId" name="plantId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 cursor-not-allowed p-2" value="PLT2406210001" readonly>
+                    </div>
+                    <div class="col-span-8">
+                        <label for="plantName" class="block text-sm font-medium text-gray-700">설비명 <span class="text-red-500">*</span></label>
+                        <input type="text" id="plantName" name="plantName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 기본 정보 섹션 -->
+            <h5 class="section-header">기본 정보</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-4-col 대신 직접 grid grid-cols-4 gap-6 적용 -->
+                <div class="grid grid-cols-4 gap-6">
+                    <div>
+                        <label for="siteId" class="block text-sm font-medium text-gray-700">사업장 ID <span class="text-red-500">*</span></label>
+                        <select id="siteId" name="siteId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" required>
+                            <option value="">선택하세요</option>
+                            <option value="SITEA">사업장 A</option>
+                            <option value="SITEB">사업장 B</option>
+                            <!-- 백엔드에서 Site 정보 가져올 예정 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="plantType" class="block text-sm font-medium text-gray-700">설비 타입 <span class="text-red-500">*</span></label>
+                        <select id="plantType" name="plantType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" required>
+                            <option value="">선택하세요</option>
+                            <option value="PUMP">펌프</option>
+                            <option value="MOTOR">모터</option>
+                            <option value="VALVE">밸브</option>
+                            <!-- 백엔드에서 Code.codeGroup = 'PLT_TYPE' 코드 가져올 예정 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="funcId" class="block text-sm font-medium text-gray-700">기능 그룹 코드</label>
+                        <select id="funcId" name="funcId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="">선택하세요</option>
+                            <option value="MECH">기계</option>
+                            <option value="ELEC">전기</option>
+                            <!-- 백엔드에서 Code.codeGroup = 'FUNC_GROUP' 코드 가져올 예정 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="respDept" class="block text-sm font-medium text-gray-700">담당 부서</label>
+                        <select id="respDept" name="respDept" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="">선택하세요</option>
+                            <option value="DEPTA">생산 1부</option>
+                            <option value="DEPTB">유지보수팀</option>
+                            <!-- 백엔드에서 Dept 정보 가져올 예정 -->
+                        </select>
+                    </div>
+                </div>
+                <!-- 이전의 form-grid-3-col 대신 직접 grid grid-cols-3 gap-6 적용 -->
+                <div class="grid grid-cols-3 gap-6 mt-6">
+                    <div class="col-span-1">
+                        <label for="installDate" class="block text-sm font-medium text-gray-700">설치 일자</label>
+                        <input type="date" id="installDate" name="installDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="location" class="block text-sm font-medium text-gray-700">설치 위치</label>
+                        <input type="text" id="location" name="location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 제조사 정보 섹션 -->
+            <h5 class="section-header mt-8">제조사 정보</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-2-col 대신 직접 grid grid-cols-2 gap-6 적용 -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label for="manufacturer" class="block text-sm font-medium text-gray-700">제조사</label>
+                        <input type="text" id="manufacturer" name="manufacturer" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="manufacturerModel" class="block text-sm font-medium text-gray-700">모델명</label>
+                        <input type="text" id="manufacturerModel" name="manufacturerModel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="manufacturerSN" class="block text-sm font-medium text-gray-700">시리얼 번호</label>
+                        <input type="text" id="manufacturerSN" name="manufacturerSN" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="manufacturerSpec" class="block text-sm font-medium text-gray-700">규격</label>
+                        <input type="text" id="manufacturerSpec" name="manufacturerSpec" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자산 정보 섹션 -->
+            <h5 class="section-header mt-8">자산 정보</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-2-col 대신 직접 grid grid-cols-2 gap-6 적용 -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label for="assetType" class="block text-sm font-medium text-gray-700">자산 유형</label>
+                        <select id="assetType" name="assetType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="">선택하세요</option>
+                            <option value="CAPEX">CAPEX</option>
+                            <option value="OPEX">OPEX</option>
+                            <!-- 백엔드에서 Code.codeGroup = 'ASSET_TYPE' 코드 가져올 예정 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="depreMethod" class="block text-sm font-medium text-gray-700">감가상각 방법</label>
+                        <select id="depreMethod" name="depreMethod" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="">선택하세요</option>
+                            <option value="STL">정액법</option>
+                            <option value="DCL">정률법</option>
+                            <!-- 백엔드에서 Code.codeGroup = 'DEPRE_METHOD' 코드 가져올 예정 -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="acquitionValue" class="block text-sm font-medium text-gray-700">취득 가액</label>
+                        <input type="number" id="acquitionValue" name="acquitionValue" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" step="0.01">
+                    </div>
+                    <div>
+                        <label for="residualValue" class="block text-sm font-medium text-gray-700">잔존 가액</label>
+                        <input type="number" id="residualValue" name="residualValue" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 체크리스트 섹션 -->
+            <h5 class="section-header mt-8">체크리스트</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-2-col 대신 직접 grid grid-cols-2 gap-6 적용 -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2 checkbox-group">
+                        <div class="flex items-center">
+                            <input id="inspectionYN" name="inspectionYN" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="inspectionYN" class="ml-2 block text-sm text-gray-900">점검 필요 여부</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="psmYN" name="psmYN" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="psmYN" class="ml-2 block text-sm text-gray-900">PSM 대상 여부</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="tagYN" name="tagYN" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="tagYN" class="ml-2 block text-sm text-gray-900">Tag 부착 여부</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 비고 섹션 -->
+            <h5 class="section-header mt-8">비고</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-2-col 대신 직접 grid grid-cols-2 gap-6 적용 -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2">
+                        <label for="note" class="block text-sm font-medium text-gray-700 sr-only">비고</label>
+                        <textarea id="note" name="note" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" placeholder="추가적인 설비 특이사항을 입력하세요."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 파일 첨부 섹션 -->
+            <h5 class="section-header mt-8">첨부 파일</h5>
+            <div class="form-section">
+                <!-- 이전의 form-grid-2-col 대신 직접 grid grid-cols-2 gap-6 적용 -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 sr-only">첨부 파일</label>
+                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4m32-4V12a4 4 0 00-4-4H12a4 4 0 00-4 4v12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600">
+                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>파일 업로드</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                    </label>
+                                    <p class="pl-1">또는 드래그 앤 드롭</p>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF 최대 10MB</p>
+                                <!-- 첨부된 파일 목록이 표시될 영역 -->
+                                <div id="attached-files" class="mt-2 text-left text-sm text-gray-700">
+                                    <!-- 파일이 첨부되면 여기에 목록이 추가됩니다. -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI 유지보수 제안 섹션 -->
+            <h5 class="section-header mt-8">✨ AI 유지보수 제안</h5>
+            <div class="form-section">
+                <div class="col-span-2">
+                    <button type="button" id="getMaintenanceSuggestion" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-md shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 flex items-center">
+                        <span id="ai-button-text">✨ 유지보수 제안 받기</span>
+                        <span id="ai-loading-spinner" class="loader hidden"></span>
+                    </button>
+                    <textarea id="maintenanceSuggestion" rows="8" class="mt-4 block w-full rounded-md border-gray-300 shadow-sm bg-gray-50 p-2 resize-y" placeholder="여기에 AI의 유지보수 제안이 표시됩니다." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- 하단 버튼 -->
+            <div class="mt-6 flex justify-end space-x-3">
+                <a href="PlantList.html" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+                    목록으로
+                </a>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    저장
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('getMaintenanceSuggestion').addEventListener('click', async () => {
+            const plantType = document.getElementById('plantType').value;
+            const manufacturerModel = document.getElementById('manufacturerModel').value;
+            const manufacturerSpec = document.getElementById('manufacturerSpec').value;
+            const note = document.getElementById('note').value;
+            const maintenanceSuggestionTextarea = document.getElementById('maintenanceSuggestion');
+            const aiButtonText = document.getElementById('ai-button-text');
+            const aiLoadingSpinner = document.getElementById('ai-loading-spinner');
+
+            if (!plantType) {
+                alert('유지보수 제안을 받으려면 설비 타입을 선택해주세요.');
+                return;
+            }
+
+            aiButtonText.textContent = '제안 생성 중...';
+            aiLoadingSpinner.classList.remove('hidden');
+            maintenanceSuggestionTextarea.value = 'AI가 유지보수 제안을 생성하고 있습니다. 잠시만 기다려 주세요...';
+
+            const prompt = `다음 설비에 대한 잠재적인 유지보수 작업 및 일반적인 주의사항을 제안해 주세요.
+설비 타입: ${plantType || '정보 없음'}
+모델명: ${manufacturerModel || '정보 없음'}
+규격: ${manufacturerSpec || '정보 없음'}
+비고: ${note || '정보 없음'}
+
+한국어로 자세하고 실용적인 유지보수 제안을 200단어 내외로 제공해 주세요.`;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    maintenanceSuggestionTextarea.value = text;
+                } else {
+                    maintenanceSuggestionTextarea.value = 'AI 제안을 가져오는 데 실패했습니다: 응답 구조가 예상과 다릅니다.';
+                    console.error('API response structure unexpected:', result);
+                }
+            } catch (error) {
+                maintenanceSuggestionTextarea.value = 'AI 제안을 가져오는 중 오류가 발생했습니다: ' + error.message;
+                console.error('Error calling Gemini API:', error);
+            } finally {
+                aiButtonText.textContent = '✨ 유지보수 제안 받기';
+                aiLoadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
