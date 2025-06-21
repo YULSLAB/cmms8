@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재고 목록</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">재고 목록</h2>
+
+        <!-- 검색 및 필터링 섹션 -->
+        <div class="mb-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div>
+                    <label for="inventoryId" class="block text-sm font-medium text-gray-700">재고 ID</label>
+                    <input type="text" id="inventoryId" name="inventoryId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div>
+                    <label for="inventoryName" class="block text-sm font-medium text-gray-700">재고명</label>
+                    <input type="text" id="inventoryName" name="inventoryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div>
+                    <label for="inventoryType" class="block text-sm font-medium text-gray-700">재고 타입</label>
+                    <select id="inventoryType" name="inventoryType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                        <option value="">전체</option>
+                        <option value="TOOL">공구</option>
+                        <option value="PART">부품</option>
+                        <option value="MAT">자재</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="manufacturer" class="block text-sm font-medium text-gray-700">제조사</label>
+                    <input type="text" id="manufacturer" name="manufacturer" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    검색
+                </button>
+            </div>
+        </div>
+
+        <!-- 재고 목록 테이블 -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
+                <thead class="bg-blue-500 text-white">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">재고 ID</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">재고명</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">재고 타입</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">제조사</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">모델명</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">시리얼 번호</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">단위</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">현재 수량</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">현재 가치</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">액션</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INV240001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">육각 렌치 세트</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">공구</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Stanley</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">SA100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">SN-987654</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">SET</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">10</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">250,000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="InventoryDetail.html?inventoryId=INV240001" class="text-blue-600 hover:text-blue-900 mr-2">상세</a>
+                            <a href="InventoryForm.html?inventoryId=INV240001" class="text-indigo-600 hover:text-indigo-900 mr-2">수정</a>
+                            <button class="text-red-600 hover:text-red-900">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INV240002</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">볼트 세트</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">자재</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">ABC</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">BOLT-200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">SN-54321</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">EA</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">150,000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="InventoryDetail.html?inventoryId=INV240002" class="text-blue-600 hover:text-blue-900 mr-2">상세</a>
+                            <a href="InventoryForm.html?inventoryId=INV240002" class="text-indigo-600 hover:text-indigo-900 mr-2">수정</a>
+                            <button class="text-red-600 hover:text-red-900">삭제</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 하단 버튼 및 페이징 -->
+        <div class="mt-6 flex justify-between items-center">
+            <a href="InventoryForm.html" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                신규 재고 등록
+            </a>
+            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <span>이전</span>
+                </a>
+                <a href="#" aria-current="page" class="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                    1
+                </a>
+                <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                    2
+                </a>
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                    <span>다음</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
