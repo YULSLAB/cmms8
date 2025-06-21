@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점검 실적 등록/수정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .section-header { @apply text-lg font-semibold text-gray-700 mb-4; }
+        .form-section { @apply mb-8; }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">점검 실적 등록/수정</h2>
+        <form action="#" method="POST">
+            <!-- 기본 정보 -->
+            <div class="form-section">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label for="inspectionId" class="block text-sm font-medium text-gray-700">점검 ID (자동 생성)</label>
+                        <input type="text" id="inspectionId" name="inspectionId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 cursor-not-allowed p-2" value="INS2406210001" readonly>
+                    </div>
+                    <div>
+                        <label for="plantId" class="block text-sm font-medium text-gray-700">설비 ID <span class="text-red-500">*</span></label>
+                        <input type="text" id="plantId" name="plantId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-6 mt-6">
+                    <div>
+                        <label for="inspectionDate" class="block text-sm font-medium text-gray-700">점검일</label>
+                        <input type="date" id="inspectionDate" name="inspectionDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="performDept" class="block text-sm font-medium text-gray-700">수행 부서</label>
+                        <input type="text" id="performDept" name="performDept" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="inspectorUserId" class="block text-sm font-medium text-gray-700">점검자 ID <span class="text-red-500">*</span></label>
+                        <input type="text" id="inspectorUserId" name="inspectorUserId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <label for="inspectionResultOverall" class="block text-sm font-medium text-gray-700">점검 결과</label>
+                        <select id="inspectionResultOverall" name="inspectionResultOverall" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            <option value="">선택하세요</option>
+                            <option value="PASS">양호</option>
+                            <option value="FAIL">불량</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="siteId" class="block text-sm font-medium text-gray-700">사업장 ID</label>
+                        <input type="text" id="siteId" name="siteId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </div>
+            <!-- 문제 및 조치 -->
+            <h5 class="section-header">점검 내용</h5>
+            <div class="form-section">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="col-span-2">
+                        <label for="problemDescription" class="block text-sm font-medium text-gray-700">문제점</label>
+                        <textarea id="problemDescription" name="problemDescription" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="actionTaken" class="block text-sm font-medium text-gray-700">조치 사항</label>
+                        <textarea id="actionTaken" name="actionTaken" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="note" class="block text-sm font-medium text-gray-700">비고</label>
+                        <textarea id="note" name="note" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 첨부파일 -->
+            <h5 class="section-header">첨부 파일</h5>
+            <div class="form-section">
+                <input type="file" id="files" name="files" multiple class="block w-full text-sm text-gray-700">
+            </div>
+            <!-- 버튼 -->
+            <div class="mt-6 flex justify-end space-x-3">
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700">저장</button>
+                <a href="InspectionList.html" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md shadow-sm hover:bg-gray-400">목록</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

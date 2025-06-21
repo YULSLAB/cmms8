@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작업 오더 상세</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .section-header { @apply text-base font-bold text-gray-800 mb-4; }
+        .info-section { @apply bg-white p-4 rounded-md shadow-sm mb-6 border border-black; }
+        .info-item { @apply mb-2; }
+        .info-label { @apply font-medium text-gray-800; }
+        .info-value { @apply text-gray-700; }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">작업 오더 상세</h2>
+        <!-- 기본 정보 -->
+        <div class="info-section">
+            <h5 class="section-header">기본 정보</h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                <div class="info-item"><span class="info-label">작업 오더 ID:</span> <span class="info-value">WO2406210001</span></div>
+                <div class="info-item"><span class="info-label">설비 ID:</span> <span class="info-value">PLT2406210001</span></div>
+                <div class="info-item"><span class="info-label">작업 명칭:</span> <span class="info-value">펌프 교체</span></div>
+                <div class="info-item"><span class="info-label">상태:</span> <span class="info-value">접수</span></div>
+                <div class="info-item"><span class="info-label">예정일:</span> <span class="info-value">2024-07-01</span></div>
+                <div class="info-item"><span class="info-label">실행일:</span> <span class="info-value">-</span></div>
+            </div>
+        </div>
+        <!-- 비용 정보 -->
+        <div class="info-section">
+            <h5 class="section-header">비용 정보</h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                <div class="info-item"><span class="info-label">예정 공수:</span> <span class="info-value">8</span></div>
+                <div class="info-item"><span class="info-label">예정 비용:</span> <span class="info-value">500000</span></div>
+                <div class="info-item"><span class="info-label">소요 공수:</span> <span class="info-value">-</span></div>
+                <div class="info-item"><span class="info-label">소요 비용:</span> <span class="info-value">-</span></div>
+            </div>
+        </div>
+        <!-- 비고 -->
+        <div class="info-section">
+            <h5 class="section-header">비고</h5>
+            <div class="grid grid-cols-1 gap-2 text-sm">
+                <div class="info-item"><span class="info-label">메모:</span> <span class="info-value">예정대로 교체 필요</span></div>
+            </div>
+        </div>
+        <!-- 첨부 파일 -->
+        <div class="info-section">
+            <h5 class="section-header">첨부 파일</h5>
+            <ul class="list-disc list-inside text-sm text-gray-700">
+                <li><a href="#" class="text-blue-600 hover:underline">workorder_plan.pdf</a></li>
+            </ul>
+            <p class="text-sm text-gray-500 mt-2">파일 그룹 ID: <span id="fileGroupId">WO2406210001</span></p>
+        </div>
+        <!-- 관련 정보 -->
+        <div class="info-section">
+            <h5 class="section-header">관련 정보</h5>
+            <ul class="list-disc list-inside text-sm text-gray-700">
+                <li><a href="../memo/MemoList.html?targetType=WORKORDER&targetId=WO2406210001" class="text-blue-600 hover:underline">관련 메모 보기</a></li>
+            </ul>
+        </div>
+        <!-- 하단 버튼 -->
+        <div class="mt-6 flex justify-end space-x-3">
+            <a href="WorkOrderList.html" class="px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md shadow-sm hover:bg-gray-400">목록으로</a>
+            <a href="WorkOrderForm.html?workOrderId=WO2406210001" class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700">수정</a>
+            <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded-md shadow-sm hover:bg-red-700">삭제</button>
+        </div>
+    </div>
+</body>
+</html>
