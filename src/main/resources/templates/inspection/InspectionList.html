@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점검 실적 목록</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">점검 실적 목록</h2>
+        <!-- 검색 필터 -->
+        <div class="mb-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label for="plantId" class="block text-sm font-medium text-gray-700">설비 ID</label>
+                    <input type="text" id="plantId" name="plantId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div>
+                    <label for="inspectorUserId" class="block text-sm font-medium text-gray-700">점검자 ID</label>
+                    <input type="text" id="inspectorUserId" name="inspectorUserId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div>
+                    <label for="fromDate" class="block text-sm font-medium text-gray-700">시작일</label>
+                    <input type="date" id="fromDate" name="fromDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div>
+                    <label for="toDate" class="block text-sm font-medium text-gray-700">종료일</label>
+                    <input type="date" id="toDate" name="toDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700">검색</button>
+            </div>
+        </div>
+        <!-- 목록 테이블 -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
+                <thead class="bg-blue-500 text-white">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">점검 ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">설비 ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">점검일</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">점검자</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">결과</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">액션</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">INS2406210001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">PLT2406210001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2024-06-20</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">USR001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">양호</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <a href="InspectionDetail.html?inspectionId=INS2406210001" class="text-blue-600 hover:text-blue-900 mr-2">상세</a>
+                            <a href="InspectionForm.html?inspectionId=INS2406210001" class="text-indigo-600 hover:text-indigo-900 mr-2">수정</a>
+                            <button class="text-red-600 hover:text-red-900">삭제</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 하단 버튼 -->
+        <div class="mt-6 flex justify-between items-center">
+            <a href="InspectionForm.html" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700">신규 등록</a>
+        </div>
+    </div>
+</body>
+</html>
